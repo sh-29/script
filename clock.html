@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>디지털 시계</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      button {
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+      #box {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(#be93c5, #7bc6cc);
+      }
+      #box * {
+        color: #fff;
+        height: 100px;
+        font-family: 'Dosis', sans-serif;
+        font-size: 25px;
+      }
+      #digital {
+        width: 200px;
+        height: 110px;
+        border-radius: 100%;
+        background: #000;
+        text-align: center;
+        position: relative;
+        padding: 50px 0 50px;
+      }
+      #digital::before,
+      #digital::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-51%, -49%);
+        content: '';
+        border: 1px solid #fff;
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+      }
+      #digital::before {
+        transform: translate(-49%, -51%);
+      }
+      /* #btn {
+        width: 100px;
+        border-radius: 50%;
+        background: #f00;
+        font-weight: 700;
+      } */
+    </style>
+    <script>
+      /* 2021-1-28 목요일 오후 12:18:07
+      function 함수 : 반복되는 실행문의 집합
+      function 함수명() {
+        코드들;
+      }
+      함수 호출하기(이름이 있는 함수는 함수 위, 아래 어디서든 호출 가능)
+      함수명(); =>즉시 실행
+      함수명; => 시간 간격 기다렸다가 실행
+
+      ▼이벤트 선언하는 방법
+      객체.addEventListener('이벤트명',함수);
+      */
+      function clock() {
+        // 1) 날짜 객체 생성
+        var now = new Date();
+        console.log(now); //Thu Jan 28 2021 13:04:12 GMT+0900 (대한민국 표준시)
+        var yy = now.getFullYear();
+        var mm = now.getMonth() + 1;
+        var dd = now.getDate();
+        var day = now.getDay();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+        console.log(yy, mm, dd, day, h, m, s);
+
+        // 2) 숫자 요일을 문자 요일로 변경
+        var dayArr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        // 4요일 => 목요일 dayArr[day]
+
+        // 3) 시간을 이용해 오전과 오후로 구분
+        var ampm = h < 12 ? 'AM' : 'PM';
+        console.log(ampm);
+
+        // 4) 24(0~23)시간제 에서 12(0~11)시간제로 변경
+        h %= 12;
+        console.log(h);
+
+        // 5) 0시만 12시로 교체
+        // false : 숫자0, 문자'', undefined, null, NaN(Nat a Number)
+        if (h === 0) h = 12;
+
+        // 6) 시,분,초에서만 한자리일 경우 '0'을 추가하여 두자리로 변경
+        if (h < 10) h = '0' + h;
+        if (m < 10) m = '0' + m;
+        if (s < 10) s = '0' + s;
+
+        /* 객체.innerHTML = 값; // 
+        값을 HTML에 넣을거야. HTML어디에? HTML에서 선택한 객체에. 
+        그러려면 객체 선택먼저 하고.innerHTML = 값; */
+        // $('#digital').html(result); 제이쿼리
+        var result =
+          yy +
+          ' - ' +
+          mm +
+          ' - ' +
+          dd +
+          '' +
+          '<br>' +
+          dayArr[day] +
+          '' +
+          '<br>' +
+          ampm +
+          ' ' +
+          h +
+          ' : ' +
+          m +
+          ' : ' +
+          s;
+        console.log(result);
+        document.getElementById('digital').innerHTML = result;
+      }
+      window.addEventListener('load', function () {
+        // load 이벤트 안에서 함수 호출을 하는 이유 : DOM생성 되어 화면에 html문서 구조를 출력하고 함수가 동작되게 하려고
+        clock(); //로딩 후 최초 한번만 출력
+
+        // 1초에 한번씩 clock()함수를 호출
+        // setInterval(함수, 시간간격);
+        var timer = setInterval(clock, 1000);
+        /*  setInterval(function () {
+          clock();
+        }, 1000); */
+
+        //STOP버튼을 클릭하면 반복을 중지
+        // document.querySelector('#btn').addEventListener('click', function () {
+        //   clearInterval(timer);
+
+        //   /* 스크립트에서 스타일을 바꾸고 싶을때
+        //   객체.style.backgroundColor = 'pink'; */
+        //   var digitalTag = document.getElementById('digital');
+        //   /* digitalTag.style.backgroundColor = 'yellow';
+        //   digitalTag.style.color = 'red'; */
+
+        //   // cssText를 이용하면 여러개의 스타일을 한 줄에 적용
+        //   digitalTag.style.cssText = 'background-color:yellow;color:red;';
+        // });
+
+        // document.querySelector('#btn').addEventListener('click', function () {
+        //   clearInterval(timer);
+
+        //   var digitalTag = document.getElementById('digital');
+
+        //   //객체.style.backgroundColor = 'pink';
+        //   /* digitalTag.style.backgroundColor = '#f00';
+        //   digitalTag.style.color = '#0f0'; */
+
+        //   // cssText를 이용하면 여러개의 스타일을 한줄에 적용
+        //   digitalTag.style.cssText = 'background-color: #f00;color: #0f0;';
+        // });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="box">
+      <div id="digital"></div>
+      <!-- <button id="btn" type="button">STOP</button> -->
+    </div>
+  </body>
+</html>

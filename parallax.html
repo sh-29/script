@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        vertical-align: top;
+      }
+      section {
+        display: block;
+      }
+      /* //태그초기화 */
+
+      body {
+        background: #000;
+        color: #fff;
+      }
+      #infoBox {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        width: 140px;
+        z-index: 100;
+        color: #999;
+      }
+      .red {
+        color: #f00;
+      }
+      h1 {
+        width: 100%;
+        height: 100vh;
+        color: gold;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cnt {
+        position: relative;
+        width: 50vw;
+        margin-top: 60vh;
+        /* border: 1px solid #f00; */
+      }
+      .cnt h2 {
+        position: absolute;
+        top: -40vh;
+        left: 40vw;
+        font-size: 15vw;
+      }
+      .cnt img {
+        width: 100%;
+      }
+      .cnt figcaption {
+        text-align: right;
+        font-size: 3vw;
+        margin-top: -8vw;
+        margin-right: -2vw;
+      }
+
+      /* 짝수제어 */
+      .cnt:nth-child(even) {
+        margin-left: auto;
+      }
+      .cnt:nth-child(even) h2 {
+        right: 40vw;
+        left: auto;
+      }
+      .cnt:nth-child(even) figcaption {
+        text-align: left;
+        margin-left: -2vw;
+        margin-right: auto;
+      }
+
+      /* 투명도 */
+      .cnt h2,
+      .cnt img,
+      .cnt figcaption {
+        opacity: 0;
+        transition: all 1s ease;
+      }
+      .cnt h2 {
+        transform: translate(0, 200px);
+        transition-delay: 0.1s;
+      }
+      .cnt img {
+        transform: translate(0, 200px);
+        transition-delay: 0.6s;
+      }
+      .cnt figcaption {
+        transform: translate(200px, 0);
+        transition-delay: 0.9s;
+      }
+      /* 페이드 */
+      .cnt.fade h2,
+      .cnt.fade img,
+      .cnt.fade figcaption {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+      .cnt.fade h2 {
+        opacity: 0.1;
+      }
+    </style>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script>
+      /* 
+      윈도우 스크롤 이벤트
+      스크롤 변수 담아서 스크롤탑 텍스트 교체
+
+      cnt(각 인덱스) offset().top 구해서 텍스트 교체
+      윈도우 스크롤이 각cnt 옵셋().top보다 크거나 같으면 addClass'페이드인''red' 아니면 둘다 removeClass
+
+      윈도우 스크롤 강제실행
+       */
+      $(document).ready(function () {
+        $(window).on('scroll', function () {
+          var scrollTop = $(this).scrollTop() + $(this).height();
+          // console.log(scrollTop);
+          $('#offset').text(scrollTop);
+
+          var _infoList = $('#infoBox li');
+          $(_infoList).each(function (idx) {
+            var cntPos = parseInt($('#container .cnt').eq(idx).offset().top);
+            // console.log(cntPos);
+            $(this).children().text(cntPos);
+          });
+
+          $('.cnt').each(function (idx) {
+            if (scrollTop >= $(this).offset().top) {
+              $(this).addClass('fade');
+              $(_infoList).eq(idx).addClass('red');
+            } else {
+              $(this).removeClass('fade');
+              $(_infoList).eq(idx).removeClass('red');
+            }
+          });
+        });
+        $(window).trigger('scroll');
+      });
+    </script>
+  </head>
+  <body>
+    <div id="infoBox">
+      <p>scrollTop() : <span id="offset">0</span></p>
+      <ul>
+        <li>#cnt1 : <span id="offset1">0</span></li>
+        <li>#cnt2 : <span id="offset2">0</span></li>
+        <li>#cnt3 : <span id="offset3">0</span></li>
+        <li>#cnt4 : <span id="offset4">0</span></li>
+        <li>#cnt5 : <span id="offset5">0</span></li>
+        <li>#cnt6 : <span id="offset6">0</span></li>
+        <li>#cnt7 : <span id="offset7">0</span></li>
+        <li>#cnt8 : <span id="offset8">0</span></li>
+        <li>#cnt9 : <span id="offset9">0</span></li>
+      </ul>
+    </div>
+    <h1>parallax scrolling<br />평면에 공간적 깊이를 더해주는 시각적 효과</h1>
+    <div id="container">
+      <section id="cnt1" class="cnt">
+        <figure>
+          <h2>01</h2>
+          <img src="images/photo1.jpg" alt="" />
+          <figcaption>
+            유니크함으로 승부하는 크로스오버계의 아이돌 포레스텔라
+          </figcaption>
+        </figure>
+      </section>
+      <section id="cnt2" class="cnt">
+        <figure>
+          <h2>02</h2>
+          <img src="images/photo2.jpg" alt="" />
+          <figcaption>귀로 듣는 고품격 감성 멜로드라마 레떼아모르</figcaption>
+        </figure>
+      </section>
+      <section id="cnt3" class="cnt">
+        <figure>
+          <h2>03</h2>
+          <img src="images/photo3.jpg" alt="" />
+          <figcaption>한 편의 시 같은 울림, 성악 어벤져스 라포엠</figcaption>
+        </figure>
+      </section>
+      <section id="cnt4" class="cnt">
+        <figure>
+          <h2>04</h2>
+          <img src="images/photo4.jpg" alt="" />
+          <figcaption>한과 흥을 넘나드는 개성 강한 4중창 라비던스</figcaption>
+        </figure>
+      </section>
+      <section id="cnt5" class="cnt">
+        <figure>
+          <h2>05</h2>
+          <img src="images/photo5.jpg" alt="" />
+          <figcaption>
+            탄탄한 4성부의 호소력 짙은 하모니 에델 라인클랑
+          </figcaption>
+        </figure>
+      </section>
+      <section id="cnt6" class="cnt">
+        <figure>
+          <h2>06</h2>
+          <img src="images/photo6.jpg" alt="" />
+          <figcaption>
+            파워와 에너지가 넘치는 압도적 클라스 미라클라스
+          </figcaption>
+        </figure>
+      </section>
+      <section id="cnt7" class="cnt">
+        <figure>
+          <h2>07</h2>
+          <img src="images/photo7.jpg" alt="" />
+          <figcaption>
+            한 편의 느와르가 떠오르는 강렬한 네 남자 흉스프레소
+          </figcaption>
+        </figure>
+      </section>
+      <section id="cnt8" class="cnt">
+        <figure>
+          <h2>08</h2>
+          <img src="images/photo8.jpg" alt="" />
+          <figcaption>
+            로커 X 정통 성악가들이 만들어내는 뜨거운 하모니 인기현상
+          </figcaption>
+        </figure>
+      </section>
+      <section id="cnt9" class="cnt">
+        <figure>
+          <h2>09</h2>
+          <img src="images/photo9.jpg" alt="" />
+          <figcaption>클래식 크로스오버의 장인 포르테 디 콰트로</figcaption>
+        </figure>
+      </section>
+    </div>
+  </body>
+</html>

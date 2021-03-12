@@ -1,0 +1,165 @@
+@charset "utf-8";
+/* tag reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #333;
+  width: 100vw;
+  height: 100vh;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  border: none;
+}
+img {
+  vertical-align: top;
+}
+section {
+  display: block;
+}
+
+/* slider */
+#mainSlider {
+  width: 1000px;
+  height: 600px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+#visualItems,
+#visualItems .item_wrap,
+#visualItems .item,
+#visualItems .item a {
+  height: 500px;
+}
+
+#visualItems {
+  width: 100%;
+}
+#mainSlider .item_wrap {
+  position: relative; /* left좌표값 animate() -> 스크립트 제어 */
+}
+/* #visualItems .item_wrap {
+  width: 300%;
+} */ /* 스크립트에서 제어 */
+/* #visualItems .item {
+  width: calc(100% / 3);
+}  */ /* 스크립트에서 제어 */
+
+/* control */
+#mainSlider .prev,
+#mainSlider .next,
+#mainSlider .play_pause,
+#mainSlider .pagination {
+  position: absolute;
+  z-index: 500;
+}
+#mainSlider .play_pause,
+#mainSlider .pagination {
+  bottom: 40px;
+  left: 50%;
+}
+#mainSlider .play_pause *,
+#mainSlider .pagination * {
+  vertical-align: top;
+}
+#mainSlider .play_pause {
+  transform: translateX(35px);
+}
+#mainSlider .play_pause button img {
+  width: 20px;
+}
+#mainSlider .play {
+  display: none;
+} /* 현재 자동실행중이라서 숨김 */
+#mainSlider .pagination {
+  transform: translateX(-55px);
+}
+#mainSlider .pagination li {
+  float: left;
+  margin-right: 10px;
+}
+#mainSlider .pagination li button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #fff;
+}
+#mainSlider .pagination li.on button {
+  background: transparent;
+}
+#mainSlider .prev_next button img {
+  width: 47px;
+}
+#mainSlider .prev,
+#mainSlider .next {
+  top: 50%;
+  left: 50%;
+}
+#mainSlider .prev {
+  transform: translate(-447px, -50%);
+}
+#mainSlider .next {
+  transform: translate(400px, -50%);
+}
+#visualItems .item {
+  float: left;
+}
+#visualItems .item a {
+  background: no-repeat center;
+  background-size: contain;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+#visualItems #item1 a {
+  background-image: url('../images/event1.jpg');
+}
+#visualItems #item2 a {
+  background-image: url('../images/event2.jpg');
+}
+#visualItems #item3 a {
+  background-image: url('../images/event3.jpg');
+}
+#visualItems .item a * {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  border: none;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  position: absolute;
+}
+#visualItems .item a:focus::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px dotted red;
+  box-sizing: border-box;
+}
+
+.testlink {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
