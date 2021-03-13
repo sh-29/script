@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21:12분 시작</title>
+    <style>
+      div {
+      }
+      ul {
+        width: 320px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        list-style: none;
+      }
+      li {
+        width: 100px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid pink;
+        margin-top: 5px;
+      }
+    </style>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // 클릭하는 li가 클래스 target을 가지는지
+        $('#list li').on('click', function () {
+          var good = $(this).is('.target');
+          console.log(good);
+
+          // true이면 축하, 배경색 / false면 꽝 텍스트교체
+          if (good) {
+            alert('축하');
+            $(this).css({ background: 'gold' }).text('보물');
+          } else {
+            $(this).text('꽝');
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li class="target">5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+      </ul>
+    </div>
+  </body>
+</html>
