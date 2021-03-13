@@ -25,7 +25,7 @@
         flex-direction: column;
       }
       .wrap > div {
-        margin-bottom: 50px;
+        margin-bottom: 2.604vw;
       }
 
       /* loading */
@@ -36,11 +36,11 @@
       }
       .loading_box > p {
         color: #fff;
-        padding-bottom: 10px;
+        padding-bottom: 0.52vw;
       }
       .loading {
-        width: 40px;
-        height: 40px;
+        width: 2.083vw;
+        height: 2.083vw;
         position: relative;
         animation: loading 1s infinite;
       }
@@ -78,32 +78,32 @@
 
       /* 햄버거 */
       .hamburger {
-        width: 40px;
-        height: 40px;
+        width: 2.083vw;
+        height: 2.083vw;
       }
       .hamburger p {
-        width: 40px;
-        height: 4px;
+        width: 2.083vw;
+        height: 0.208vw;
         background: coral;
         transform: translateY(-50%);
         position: relative;
-        margin-top: 19px;
+        margin-top: 0.989vw;
         transition: all 0.3s;
       }
       .hamburger p::before,
       .hamburger p::after {
         content: '';
         position: absolute;
-        width: 40px;
-        height: 4px;
+        width: 2.083vw;
+        height: 0.208vw;
         background: coral;
         transition: all 0.3s;
       }
       .hamburger p::before {
-        top: -18px;
+        top: 0.937vw;
       }
       .hamburger p::after {
-        bottom: -18px;
+        bottom: 0.937vw;
       }
       .hamburger:hover p {
         background: transparent;
@@ -111,44 +111,45 @@
       .hamburger:hover p::before,
       .hamburger:hover p::after {
         transform-origin: left;
-        width: 52px;
+        width: 2.708vw;
       }
       .hamburger:hover p::before {
-        transform: rotate(45deg);
+        transform: rotate(-45deg);
       }
       .hamburger:hover p::after {
-        transform: rotate(-45deg);
+        transform: rotate(45deg);
       }
 
       /* 검색창 */
       .search {
-        width: 40px;
-        height: 40px;
+        /* width: 15.625vw; */
+        width: 2.083vw;
+        height: 2.083vw;
         border-left: 1px solid #fff;
         border-right: 1px solid #fff;
         position: relative;
         transition: all 0.5s;
       }
       .search img {
-        top: 10px;
-        left: 10px;
-        width: 20px;
+        top: 0.4vw;
+        left: 0.4vw;
+        width: 1.2vw;
         position: absolute;
       }
       .search p {
-        width: 40px;
-        height: 40px;
+        width: 2.083vw;
+        height: 2.083vw;
         background: #fff;
         position: absolute;
         top: 0;
-        right: 0px;
+        right: 0;
         opacity: 0;
       }
       .search p img {
-        top: 8px;
+        top: 0.416vw;
       }
       .search:hover {
-        width: 300px;
+        width: 15.625vw;
         background: rgba(255, 255, 255, 0.3);
       }
       .search:hover p {
@@ -157,13 +158,13 @@
 
       /* 버튼1 */
       .btn {
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
+        width: 5.208vw;
+        height: 2.083vw;
+        line-height: 2.083vw;
         border: 1px solid #000;
         background: transparent;
         color: #fff;
-        font-size: 17px;
+        font-size: 0.885vw;
         overflow: hidden;
         cursor: pointer;
         vertical-align: middle;
@@ -173,12 +174,12 @@
         display: block;
         width: 100%;
         height: 100%;
-        margin-top: 0px;
+        margin-top: 0;
         background: #000;
         transition: all 0.7s;
       }
       .btn_ani1:hover::after {
-        margin-top: -40px;
+        margin-top: -2.083vw;
       }
       /* 버튼2 */
       .btn_ani2 {
@@ -204,7 +205,7 @@
         opacity: 0;
       }
       .btn_ani2:hover {
-        border-radius: 20px;
+        border-radius: 1.041vw;
       }
       /* 버튼3 */
       .btn_ani3 {
@@ -231,7 +232,7 @@
       .btn_ani3:hover::before,
       .btn_ani3:hover::after {
         width: 0px;
-        height: 2px;
+        height: 0.104vw;
         animation: btn3_1 0.3s forwards;
       }
       .btn_ani3:hover::before {
@@ -245,7 +246,7 @@
       /* 좌우 */
       .btn_ani3:hover span::before,
       .btn_ani3:hover span::after {
-        width: 2px;
+        width: 0.104vw;
         height: 0px;
         animation: btn3_2 0.3s forwards;
       }
@@ -264,7 +265,7 @@
           width: 0px;
         }
         100% {
-          width: 100px;
+          width: 5.208vw;
         }
       }
       @keyframes btn3_2 {
@@ -272,7 +273,7 @@
           height: 0px;
         }
         100% {
-          height: 40px;
+          height: 2.083vw;
         }
       }
     </style>
