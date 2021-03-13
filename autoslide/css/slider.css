@@ -5,7 +5,7 @@
   padding: 0;
 }
 body {
-  background: #333;
+  background: linear-gradient(90deg, #8a607e, #ad6782);
   width: 100vw;
   height: 100vh;
 }
@@ -113,10 +113,10 @@ section {
   left: 50%;
 }
 #mainSlider .prev {
-  transform: translate(-447px, -50%);
+  transform: translate(-347px, -50%);
 }
 #mainSlider .next {
-  transform: translate(400px, -50%);
+  transform: translate(300px, -50%);
 }
 #visualItems .item {
   float: left;
