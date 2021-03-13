@@ -5,35 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
       body {
         background: linear-gradient(90deg, #48776f, #6e927f);
         width: 100%;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
-      div {
+      h1 {
+        width: 100%;
+        text-align: center;
+        margin: 1vw;
+        font-size: 1.1vw;
+        color: #003107;
       }
       ul {
-        width: 320px;
+        width: 15.4vw;
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
         list-style: none;
       }
       li {
-        width: 100px;
-        height: 50px;
-        line-height: 50px;
+        width: calc(15vw / 3);
+        height: 3vw;
+        line-height: 3vw;
         text-align: center;
-        border: 1px solid pink;
-        margin-top: 5px;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        margin: 1px;
+      }
+      p {
+        margin-top: -11.8vw;
+        padding: 5vw;
+        background: gold;
+        text-align: center;
       }
     </style>
     <script src="js/jquery-1.12.4.min.js"></script>
     <script>
       $(document).ready(function () {
+        $('.modal').hide();
         // 클릭하는 li가 클래스 target을 가지는지
         $('#list li').on('click', function () {
           var good = $(this).is('.target');
@@ -41,7 +58,8 @@
 
           // true이면 축하, 배경색 / false면 꽝 텍스트교체
           if (good) {
-            alert('축하');
+            // alert('축하');
+            $('.modal').show();
             $(this).css({ background: 'gold' }).text('보물');
           } else {
             $(this).text('꽝');
@@ -51,18 +69,23 @@
     </script>
   </head>
   <body>
+    <h1>클릭해서 보물을 찾아보세요!</h1>
     <div>
       <ul id="list">
         <li>1</li>
         <li>2</li>
         <li>3</li>
         <li>4</li>
-        <li class="target">5</li>
+        <li>5</li>
         <li>6</li>
-        <li>7</li>
+        <li class="target">7</li>
         <li>8</li>
         <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
       </ul>
     </div>
+    <p class="modal">축하합니다!</p>
   </body>
 </html>
