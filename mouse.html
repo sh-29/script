@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>css마우스에 반응하는 이미지 효과</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        list-style: none;
+      }
+
+      #infoBox {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        color: #999;
+      }
+
+      .effect {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: #222;
+        margin: 100vh 0;
+      }
+      .move_box {
+        position: relative;
+      }
+      /* 0.25, 0.46, 0.45, 0.84 */
+      .move_box .photo,
+      .move_box .photo img {
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.84);
+      }
+      .move_box .photo {
+        position: relative;
+        width: 1000px;
+        height: 600px;
+        overflow: hidden;
+      }
+      .move_box:hover .photo {
+        transform: scale(1.05);
+      }
+      .move_box .photo img {
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        top: -10%;
+        left: -10%;
+      } /* translate는 마우스에 따라 움직이는 효과를 스크립트로 제어하려고 */
+      .move_box .txt {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.3vw;
+        color: #fff;
+        white-space: nowrap;
+      }
+    </style>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/gsap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var translateX = 0;
+        var translateY = 0;
+
+        // #infoBox의 값 출력
+        $(window).on('mousemove', function (e) {
+          $('#pageX').text(e.pageX);
+          $('#pageY').text(e.pageY);
+          $('#offsetY').text(parseInt($('.effect .move_box').offset().top));
+          $('#offsetX').text(parseInt($('.effect .move_box').offset().left));
+        });
+
+        // 대상 요소에서 마우스를 움직이는 이벤트
+        $('.effect .move_box').on('mousemove', function (e) {
+          // 요소의 정중앙 좌표값 구하기
+          /* var centerX = $(this).offset().left + $(this).width() / 2;
+          var centerY = $(this).offset().top + $(this).height() / 2; */
+          var centerX = $(this).width() / 2;
+          var centerY = $(this).height() / 2;
+          // console.log(centerX, centerY);
+
+          // 움직일 translate구하기 :  마우스좌표 - 요소의 정중앙 = 값 => 음수 왼쪽, 양수 오른쪽
+          translateX = (e.offsetX - centerX) / 10;
+          translateY = (e.offsetY - centerY) / 10;
+          console.log(translateX, translateY);
+
+          // .effect .move_box{transform: translate( 10px, 20px);}
+          /* .animate()는 transform을 지원하지 않는다 */
+          // 1) css 메서드
+          $(this)
+            .find('.photo img')
+            .css(
+              'transform',
+              'translate(' + translateX + 'px, ' + translateY + 'px)'
+            );
+
+          // 2) attr 메서드로 스타일 제어
+          //$(this).find('.photo img').attr('style', 'transform: translate(' + translateX + 'px, ' + translateY + 'px)');
+
+          // 3) gsap에서 동일하게 transform 넣어주면 되네요 -> animate 처리 됩니다
+          /* gsap.to('.photo img', {
+            transform: 'translate(' + translateX + 'px, ' + translateY + 'px)',
+          }); */
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <ul id="infoBox">
+      <li>pageX : <span id="pageX">0</span></li>
+      <li>pageY : <span id="pageY">0</span></li>
+      <li>offset().top : <span id="offsetY">0</span></li>
+      <li>offset().left : <span id="offsetX">0</span></li>
+    </ul>
+
+    <div class="effect">
+      <div class="move_box">
+        <!-- relative : 1000x600 -->
+        <div class="photo"><img src="images/bg.jpg" alt="" /></div>
+        <div class="txt">
+          <!-- absolute -->
+          <p>
+            이미지의 중앙에서 왼쪽에 위치할 경우 translate 음수, 오른쪽은 양수
+            처리
+          </p>
+          <p>마우스움직임 - 중심점 = 음수 or 양수</p>
+          <p>
+            스크롤바 생성이 가능하도록 마우스의 움직임은 pageX, pageY로 하자
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
