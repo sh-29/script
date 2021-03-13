@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: linear-gradient(90deg, #355c7d, #3e5c7c);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .wrap {
+        width: 90vw;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .wrap > div {
+        margin-bottom: 50px;
+      }
+
+      /* loading */
+      .loading_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .loading_box > p {
+        color: #fff;
+        padding-bottom: 10px;
+      }
+      .loading {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        animation: loading 1s infinite;
+      }
+      .loading p {
+        position: absolute;
+        background: gold;
+        width: 35%;
+        height: 35%;
+        border-radius: 50%;
+      }
+      .loading p:nth-child(1) {
+        top: 0;
+        left: 0;
+      }
+      .loading p:nth-child(2) {
+        top: 0;
+        right: 0;
+      }
+      .loading p:nth-child(3) {
+        bottom: 0;
+        left: 0;
+      }
+      .loading p:nth-child(4) {
+        bottom: 0;
+        right: 0;
+      }
+      @keyframes loading {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(180deg);
+        }
+      }
+
+      /* 햄버거 */
+      .hamburger {
+        width: 40px;
+        height: 40px;
+      }
+      .hamburger p {
+        width: 40px;
+        height: 4px;
+        background: coral;
+        transform: translateY(-50%);
+        position: relative;
+        margin-top: 19px;
+        transition: all 0.3s;
+      }
+      .hamburger p::before,
+      .hamburger p::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 4px;
+        background: coral;
+        transition: all 0.3s;
+      }
+      .hamburger p::before {
+        top: -18px;
+      }
+      .hamburger p::after {
+        bottom: -18px;
+      }
+      .hamburger:hover p {
+        background: transparent;
+      }
+      .hamburger:hover p::before,
+      .hamburger:hover p::after {
+        transform-origin: left;
+        width: 52px;
+      }
+      .hamburger:hover p::before {
+        transform: rotate(45deg);
+      }
+      .hamburger:hover p::after {
+        transform: rotate(-45deg);
+      }
+
+      /* 검색창 */
+      .search {
+        width: 40px;
+        height: 40px;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+        position: relative;
+        transition: all 0.5s;
+      }
+      .search img {
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        position: absolute;
+      }
+      .search p {
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        opacity: 0;
+      }
+      .search p img {
+        top: 8px;
+      }
+      .search:hover {
+        width: 300px;
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .search:hover p {
+        opacity: 1;
+      }
+
+      /* 버튼1 */
+      .btn {
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #000;
+        background: transparent;
+        color: #fff;
+        font-size: 17px;
+        overflow: hidden;
+        cursor: pointer;
+        vertical-align: middle;
+      }
+      .btn_ani1::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background: #000;
+        transition: all 0.7s;
+      }
+      .btn_ani1:hover::after {
+        margin-top: -40px;
+      }
+      /* 버튼2 */
+      .btn_ani2 {
+        transition: all 0.5s;
+        position: relative;
+        color: #000;
+      }
+      .btn_ani2 p {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .btn_ani2 .txt_click {
+        opacity: 0;
+      }
+      .btn_ani2:hover .txt_click {
+        opacity: 1;
+        font-weight: bold;
+      }
+      .btn_ani2:hover .txt_btn {
+        opacity: 0;
+      }
+      .btn_ani2:hover {
+        border-radius: 20px;
+      }
+      /* 버튼3 */
+      .btn_ani3 {
+        background: #000;
+        color: #fff;
+        position: relative;
+        border: none;
+        transition: all 1.5s;
+      }
+      .btn_ani3:hover {
+        background: transparent;
+      }
+      /* 상하좌우 */
+      .btn_ani3:hover::before,
+      .btn_ani3:hover::after,
+      .btn_ani3:hover span::before,
+      .btn_ani3:hover span::after {
+        content: '';
+        display: block;
+        position: absolute;
+        background: #fff;
+      }
+      /* 상하 */
+      .btn_ani3:hover::before,
+      .btn_ani3:hover::after {
+        width: 0px;
+        height: 2px;
+        animation: btn3_1 0.3s forwards;
+      }
+      .btn_ani3:hover::before {
+        top: 0;
+      }
+      .btn_ani3:hover::after {
+        bottom: 0;
+        right: 0;
+        animation-delay: 0.6s;
+      }
+      /* 좌우 */
+      .btn_ani3:hover span::before,
+      .btn_ani3:hover span::after {
+        width: 2px;
+        height: 0px;
+        animation: btn3_2 0.3s forwards;
+      }
+      .btn_ani3:hover span::before {
+        left: 0;
+        bottom: 0;
+        animation-delay: 0.9s;
+      }
+      .btn_ani3:hover span::after {
+        right: 0;
+        top: 0;
+        animation-delay: 0.3s;
+      }
+      @keyframes btn3_1 {
+        0% {
+          width: 0px;
+        }
+        100% {
+          width: 100px;
+        }
+      }
+      @keyframes btn3_2 {
+        0% {
+          height: 0px;
+        }
+        100% {
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="loading_box">
+        <p>loading</p>
+        <div class="loading">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      <div class="hamburger">
+        <p></p>
+      </div>
+      <div class="search">
+        <img src="img/search-solid.svg" alt="" />
+        <p><img class="go" src="img/arrow-right-solid.svg" alt="" /></p>
+      </div>
+      <div class="btn_wrap">
+        <button class="btn btn_ani1" type="button">button</button>
+        <button class="btn btn_ani2" type="button">
+          <!-- button <img src="img/angle-double-right-solid.svg" alt="" /> -->
+          <p class="txt_btn">button</p>
+          <p class="txt_click">click</p>
+        </button>
+        <button class="btn btn_ani3" type="button">button <span></span></button>
+      </div>
+    </div>
+  </body>
+</html>
