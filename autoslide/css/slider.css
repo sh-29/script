@@ -33,8 +33,8 @@ section {
 
 /* slider */
 #mainSlider {
-  width: 1000px;
-  height: 600px;
+  width: 55vw;
+  height: 40vw;
   position: relative;
   top: 50%;
   left: 50%;
@@ -45,7 +45,7 @@ section {
 #visualItems .item_wrap,
 #visualItems .item,
 #visualItems .item a {
-  height: 500px;
+  height: 35vw;
 }
 
 #visualItems {
@@ -71,7 +71,7 @@ section {
 }
 #mainSlider .play_pause,
 #mainSlider .pagination {
-  bottom: 40px;
+  bottom: 2vw;
   left: 50%;
 }
 #mainSlider .play_pause *,
@@ -79,24 +79,24 @@ section {
   vertical-align: top;
 }
 #mainSlider .play_pause {
-  transform: translateX(35px);
+  transform: translateX(1.82vw);
 }
 #mainSlider .play_pause button img {
-  width: 20px;
+  width: 1.05vw;
 }
 #mainSlider .play {
   display: none;
 } /* 현재 자동실행중이라서 숨김 */
 #mainSlider .pagination {
-  transform: translateX(-55px);
+  transform: translateX(-2.86vw);
 }
 #mainSlider .pagination li {
   float: left;
-  margin-right: 10px;
+  margin-right: 0.52vw;
 }
 #mainSlider .pagination li button {
-  width: 20px;
-  height: 20px;
+  width: 1.04vw;
+  height: 1.04vw;
   border-radius: 50%;
   border: 2px solid #fff;
   background: #fff;
@@ -105,7 +105,7 @@ section {
   background: transparent;
 }
 #mainSlider .prev_next button img {
-  width: 47px;
+  width: 2.5vw;
 }
 #mainSlider .prev,
 #mainSlider .next {
@@ -113,10 +113,10 @@ section {
   left: 50%;
 }
 #mainSlider .prev {
-  transform: translate(-347px, -50%);
+  transform: translate(-18vw, -80%);
 }
 #mainSlider .next {
-  transform: translate(300px, -50%);
+  transform: translate(15.6vw, -80%);
 }
 #visualItems .item {
   float: left;
@@ -156,10 +156,4 @@ section {
   height: 100%;
   border: 2px dotted red;
   box-sizing: border-box;
-}
-
-.testlink {
-  display: inline-block;
-  padding: 10px;
-  margin: 10px;
 }
