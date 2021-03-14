@@ -17,6 +17,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        box-sizing: border-box;
       }
       h1 {
         width: 100%;
@@ -27,33 +28,44 @@
         text-indent: -1vh;
       }
       ul {
-        width: 45vh;
+        width: 28.2vh;
         display: flex;
         flex-wrap: wrap;
         list-style: none;
-        box-sizing: border-box;
+
+        border: 1px solid #000;
       }
       li {
-        width: calc(100% / 3.1);
+        width: 9vh;
         height: 9vh;
         line-height: 9vh;
         text-align: center;
-        border: 1px solid #fff;
-        box-sizing: border-box;
-        margin: 1px;
+        background: rgba(255, 255, 255, 0.7);
+        margin: 0.2vh;
         font-size: 2.5vh;
+        cursor: pointer;
       }
       li:hover,
       li:focus {
-        color: #fff;
-        cursor: pointer;
+        background: #48776f;
       }
       p {
         margin-top: -34vh;
         padding: 15vh;
         background: gold;
         text-align: center;
-        font-size: 1.5vh;
+        font-size: 2.5vh;
+        letter-spacing: 5px;
+        font-weight: bold;
+      }
+      button {
+        margin-top: 2vh;
+        width: 6vh;
+        height: 6vh;
+        border-radius: 100%;
+        font-size: 1.7vh;
+        border: none;
+        background: linear-gradient(#48776f, #6e927f);
       }
     </style>
     <script src="js/jquery-1.12.4.min.js"></script>
@@ -74,6 +86,9 @@
             $(this).text('꽝');
           }
         });
+        $('button').on('click', function () {
+          location.reload();
+        });
       });
     </script>
   </head>
@@ -81,20 +96,21 @@
     <h1>클릭해서 보물을 찾아보세요!</h1>
     <div>
       <ul id="list">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li class="target">7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-        <li>11</li>
-        <li>12</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class="target"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
     <p class="modal">축하합니다!</p>
+    <button type="button">reset</button>
   </body>
 </html>
