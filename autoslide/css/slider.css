@@ -6,7 +6,7 @@
 }
 body {
   background: linear-gradient(90deg, #b0c29a, #dae2ac);
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 button {
@@ -33,8 +33,8 @@ section {
 
 /* slider */
 #mainSlider {
-  width: 55vw;
-  height: 40vw;
+  width: 90vh;
+  height: 75vh;
   position: relative;
   top: 50%;
   left: 50%;
@@ -45,7 +45,7 @@ section {
 #visualItems .item_wrap,
 #visualItems .item,
 #visualItems .item a {
-  height: 35vw;
+  height: 60vh;
 }
 
 #visualItems {
@@ -71,7 +71,7 @@ section {
 }
 #mainSlider .play_pause,
 #mainSlider .pagination {
-  bottom: 2vw;
+  bottom: 5vh;
   left: 50%;
 }
 #mainSlider .play_pause *,
@@ -79,24 +79,24 @@ section {
   vertical-align: top;
 }
 #mainSlider .play_pause {
-  transform: translateX(1.82vw);
+  transform: translateX(1.82vh);
 }
 #mainSlider .play_pause button img {
-  width: 1.05vw;
+  width: 2vh;
 }
 #mainSlider .play {
   display: none;
 } /* 현재 자동실행중이라서 숨김 */
 #mainSlider .pagination {
-  transform: translateX(-2.86vw);
+  transform: translateX(-6.2vh);
 }
 #mainSlider .pagination li {
   float: left;
-  margin-right: 0.52vw;
+  margin-right: 0.7vh;
 }
 #mainSlider .pagination li button {
-  width: 1.04vw;
-  height: 1.04vw;
+  width: 2vh;
+  height: 2vh;
   border-radius: 50%;
   border: 2px solid #fff;
   background: #fff;
@@ -105,7 +105,7 @@ section {
   background: transparent;
 }
 #mainSlider .prev_next button img {
-  width: 2.5vw;
+  width: 4vh;
 }
 #mainSlider .prev,
 #mainSlider .next {
@@ -113,10 +113,10 @@ section {
   left: 50%;
 }
 #mainSlider .prev {
-  transform: translate(-18vw, -80%);
+  transform: translate(-35vh, -100%);
 }
 #mainSlider .next {
-  transform: translate(15.6vw, -80%);
+  transform: translate(35vh, -100%);
 }
 #visualItems .item {
   float: left;
