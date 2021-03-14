@@ -5,7 +5,157 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 
+      작업순서
+      1)완성 된 레이아웃으로 먼저 스타일 작성
+      2)초기화면에 숨길 수 있도록 opacity 0, translate로 위치 제어
+      3)스크립트에 의해 나타날 경우 클래스명을 추가하여 opacuty 1, ranslate원래 위치로 위치 제어
+      4)스크립트 스크롤 이벤트 작성
+     -->
     <style>
+      /* tag reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        vertical-align: top;
+      }
+      section {
+        display: block;
+      }
+
+      /* Josefin Slab */
+      body {
+        background: linear-gradient(90deg, #dae2ac, #f1f2b5);
+        color: #fff;
+      }
+      #infoBox {
+        display: none;
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 2;
+        z-index: 100;
+      }
+      .red {
+        color: #f00 !important;
+      }
+      h1 {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: green;
+        font-family: 'Fira Sans Condensed';
+        font-weight: 400;
+        font-style: italic;
+        font-size: 10vh;
+      }
+      h1 span {
+        margin-top: 1vh;
+        font-size: 3.3vh;
+        font-weight: 400;
+        font-style: normal;
+      }
+      /* 
+      1920해상도에서 3.7vw는 몇px?
+      1vw = 1920/100 = 19.2vw
+      3.7 * 19.2 = 71.04px
+       */
+      #container {
+        overflow: hidden; /* figcaption 텍스트가 오른쪽으로 200픽셀만큼 나가 있어서 */
+      }
+      .cnt {
+        position: relative;
+        width: 50vw;
+        margin-top: 60vh;
+      }
+      .cnt h2 {
+        position: absolute;
+        top: -35vh;
+        left: 36%;
+        font-size: 36vh;
+        font-family: 'Rajdhani';
+        font-weight: 300;
+      }
+      .cnt img {
+        width: 100%;
+      }
+      .cnt figcaption {
+        text-align: right;
+        font-size: 3.5vh;
+        margin-top: -8vh;
+        margin-right: -2vh;
+        line-height: 1.4;
+      }
+
+      /* 짝수 꾸미기 */
+      .cnt:nth-child(even) {
+        margin-left: auto;
+      }
+      .cnt:nth-child(even) h2 {
+        right: 36%;
+        left: auto;
+      }
+      .cnt:nth-child(even) figcaption {
+        text-align: left;
+        margin-left: -2vh;
+        margin-right: auto;
+      }
+
+      /* 개별투명도 제어하기
+      transition: property duration timing-function delay
+      기본값으로 생략 가능함
+      timing-function: ease;
+      delay: 0s
+       */
+      .cnt h2,
+      .cnt figcaption,
+      .cnt img {
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.05, 0.79, 0.9, 0.24);
+      }
+      .cnt h2 {
+        transform: translate(0, 33vh);
+        transition-delay: 0.1s;
+      }
+      .cnt img {
+        transform: translate(0, 33vh);
+        transition-delay: 0.6s;
+      }
+      .cnt figcaption {
+        transform: translate(33vh, 0);
+        transition-delay: 0.9s;
+      }
+      /* 페이드 */
+      .cnt.fade h2,
+      .cnt.fade img,
+      .cnt.fade figcaption {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+      .cnt.fade h2 {
+        opacity: 0.5;
+      }
+    </style>
+    <!--     <style>
       * {
         margin: 0;
         padding: 0;
@@ -27,45 +177,57 @@
         color: #fff;
       }
       #infoBox {
+        display: none;
         position: fixed;
         top: 20px;
         right: 0;
         width: 140px;
         z-index: 100;
-        color: #999;
       }
       .red {
-        color: #f00;
+        color: #dae2ac;
       }
       h1 {
         width: 100%;
         height: 100vh;
-        color: gold;
+        color: green;
         text-align: center;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-family: 'Fira Sans Condensed';
+        font-weight: 400;
+        font-style: italic;
+        font-size: 10vh;
+      }
+      h1 span {
+        margin-top: 1vh;
+        font-size: 3.3vh;
+        font-weight: 400;
+        font-style: normal;
       }
       .cnt {
         position: relative;
         width: 50vw;
         margin-top: 60vh;
-        /* border: 1px solid #f00; */
       }
       .cnt h2 {
         position: absolute;
-        top: -40vh;
-        left: 40vw;
-        font-size: 15vw;
+        top: -35vh;
+        left: 30vh;
+        font-size: 40vh;
+        font-family: 'Rajdhani';
+        font-weight: 300;
       }
       .cnt img {
         width: 100%;
       }
       .cnt figcaption {
         text-align: right;
-        font-size: 3vw;
-        margin-top: -8vw;
-        margin-right: -2vw;
+        font-size: 3.5vh;
+        margin-top: -8vh;
+        margin-right: -2vh;
       }
 
       /* 짝수제어 */
@@ -73,12 +235,12 @@
         margin-left: auto;
       }
       .cnt:nth-child(even) h2 {
-        right: 40vw;
+        right: 30vh;
         left: auto;
       }
       .cnt:nth-child(even) figcaption {
         text-align: left;
-        margin-left: -2vw;
+        margin-left: -2vh;
         margin-right: auto;
       }
 
@@ -90,15 +252,15 @@
         transition: all 1s ease;
       }
       .cnt h2 {
-        transform: translate(0, 200px);
+        transform: translate(0, 33vh);
         transition-delay: 0.1s;
       }
       .cnt img {
-        transform: translate(0, 200px);
+        transform: translate(0, 33vh);
         transition-delay: 0.6s;
       }
       .cnt figcaption {
-        transform: translate(200px, 0);
+        transform: translate(33vh, 0);
         transition-delay: 0.9s;
       }
       /* 페이드 */
@@ -109,9 +271,9 @@
         opacity: 1;
       }
       .cnt.fade h2 {
-        opacity: 0.1;
+        opacity: 0.5;
       }
-    </style>
+    </style> -->
     <script src="js/jquery-1.12.4.min.js"></script>
     <script>
       /* 
@@ -165,12 +327,14 @@
         <li>#cnt9 : <span id="offset9">0</span></li>
       </ul>
     </div>
-    <h1>parallax scrolling<br />평면에 공간적 깊이를 더해주는 시각적 효과</h1>
+    <h1>
+      parallax scrolling<br /><span>공간적 깊이를 더해주는 시각적 효과</span>
+    </h1>
     <div id="container">
       <section id="cnt1" class="cnt">
         <figure>
           <h2>01</h2>
-          <img src="images/photo1.jpg" alt="" />
+          <img src="img/photo1.jpg" alt="" />
           <figcaption>
             유니크함으로 승부하는 크로스오버계의 아이돌 포레스텔라
           </figcaption>
@@ -179,28 +343,28 @@
       <section id="cnt2" class="cnt">
         <figure>
           <h2>02</h2>
-          <img src="images/photo2.jpg" alt="" />
+          <img src="img/photo2.jpg" alt="" />
           <figcaption>귀로 듣는 고품격 감성 멜로드라마 레떼아모르</figcaption>
         </figure>
       </section>
       <section id="cnt3" class="cnt">
         <figure>
           <h2>03</h2>
-          <img src="images/photo3.jpg" alt="" />
+          <img src="img/photo3.jpg" alt="" />
           <figcaption>한 편의 시 같은 울림, 성악 어벤져스 라포엠</figcaption>
         </figure>
       </section>
       <section id="cnt4" class="cnt">
         <figure>
           <h2>04</h2>
-          <img src="images/photo4.jpg" alt="" />
+          <img src="img/photo4.jpg" alt="" />
           <figcaption>한과 흥을 넘나드는 개성 강한 4중창 라비던스</figcaption>
         </figure>
       </section>
       <section id="cnt5" class="cnt">
         <figure>
           <h2>05</h2>
-          <img src="images/photo5.jpg" alt="" />
+          <img src="img/photo5.jpg" alt="" />
           <figcaption>
             탄탄한 4성부의 호소력 짙은 하모니 에델 라인클랑
           </figcaption>
@@ -209,7 +373,7 @@
       <section id="cnt6" class="cnt">
         <figure>
           <h2>06</h2>
-          <img src="images/photo6.jpg" alt="" />
+          <img src="img/photo6.jpg" alt="" />
           <figcaption>
             파워와 에너지가 넘치는 압도적 클라스 미라클라스
           </figcaption>
@@ -218,7 +382,7 @@
       <section id="cnt7" class="cnt">
         <figure>
           <h2>07</h2>
-          <img src="images/photo7.jpg" alt="" />
+          <img src="img/photo7.jpg" alt="" />
           <figcaption>
             한 편의 느와르가 떠오르는 강렬한 네 남자 흉스프레소
           </figcaption>
@@ -227,7 +391,7 @@
       <section id="cnt8" class="cnt">
         <figure>
           <h2>08</h2>
-          <img src="images/photo8.jpg" alt="" />
+          <img src="img/photo8.jpg" alt="" />
           <figcaption>
             로커 X 정통 성악가들이 만들어내는 뜨거운 하모니 인기현상
           </figcaption>
@@ -236,7 +400,7 @@
       <section id="cnt9" class="cnt">
         <figure>
           <h2>09</h2>
-          <img src="images/photo9.jpg" alt="" />
+          <img src="img/photo9.jpg" alt="" />
           <figcaption>클래식 크로스오버의 장인 포르테 디 콰트로</figcaption>
         </figure>
       </section>
