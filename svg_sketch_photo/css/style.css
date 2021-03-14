@@ -6,7 +6,9 @@
   top: 0;
   bottom: 0;
   right: 0;
-  left: 0; }
+  left: 0;
+  border: 1px solid #000;
+}
 
 img {
   position: absolute;
@@ -19,11 +21,14 @@ img {
   height: 212px;
   z-index: 3;
   opacity: 1;
-  animation: photo-ani 4s forwards; }
+  animation: photo-ani 4s forwards;
+  border: 1px solid #000;
+}
 
 .kz-photo-line {
   z-index: 2;
-  position: relative; }
+  position: relative;
+}
 
 .line {
   fill: none;
@@ -31,27 +36,36 @@ img {
   stroke-width: 1px;
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
-  animation: line-ani 5.5s forwards; }
+  animation: line-ani 5.5s forwards;
+}
 
 .circle {
   stroke-width: 3px;
   stroke-dasharray: 700;
   stroke-dashoffset: 700;
-  animation: line-ani 3s forwards; }
+  animation: line-ani 3s forwards;
+}
 
 /* Keyframes */
 @keyframes line-ani {
   to {
-    stroke-dashoffset: 0; } }
+    stroke-dashoffset: 0;
+  }
+}
 @keyframes photo-ani {
   0% {
-    opacity: 0; }
+    opacity: 0;
+  }
   50% {
-    opacity: 0; }
+    opacity: 0;
+  }
   100% {
-    opacity: 1; } }
+    opacity: 1;
+  }
+}
 /* Style Demo */
 body {
-  background: #2c3e50; }
+  background: #2c3e50;
+}
 
 /*# sourceMappingURL=style.css.map */
