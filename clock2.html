@@ -87,7 +87,7 @@
       function clock() {
         // 1) 날짜 객체 생성
         var now = new Date();
-        console.log(now); //Thu Jan 28 2021 13:04:12 GMT+0900 (대한민국 표준시)
+        // console.log(now); //Thu Jan 28 2021 13:04:12 GMT+0900 (대한민국 표준시)
         var yy = now.getFullYear();
         var mm = now.getMonth() + 1;
         var dd = now.getDate();
@@ -95,7 +95,7 @@
         var h = now.getHours();
         var m = now.getMinutes();
         var s = now.getSeconds();
-        console.log(yy, mm, dd, day, h, m, s);
+        // console.log(yy, mm, dd, day, h, m, s);
 
         // 2) 숫자 요일을 문자 요일로 변경
         var dayArr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
@@ -103,11 +103,11 @@
 
         // 3) 시간을 이용해 오전과 오후로 구분
         var ampm = h < 12 ? 'AM' : 'PM';
-        console.log(ampm);
+        // console.log(ampm);
 
         // 4) 24(0~23)시간제 에서 12(0~11)시간제로 변경
         h %= 12;
-        console.log(h);
+        // console.log(h);
 
         // 5) 0시만 12시로 교체
         // false : 숫자0, 문자'', undefined, null, NaN(Nat a Number)
