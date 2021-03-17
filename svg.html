@@ -53,6 +53,8 @@
           opacity: 1;
         }
       }
+
+      /* 여기부터 svg */
       #svg1 {
         z-index: 2;
         position: relative;
@@ -61,9 +63,9 @@
         fill: none;
         stroke: #ffffff;
         stroke-width: 4px;
-        stroke-miterlimit: 10;
-        stroke-dasharray: 1500;
-        stroke-dashoffset: 1500;
+        /* stroke-miterlimit: 10; */
+        stroke-dasharray: 1500; /* 전체길이 */ ---   ---
+        stroke-dashoffset: 1500; /* 시작점이 얼마나 떨어져있는지 */
         animation: lineAni 4.2s forwards;
       }
       .line {
